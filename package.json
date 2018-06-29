@@ -4,11 +4,11 @@
   "description": "Simple logger module for node.js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node example/sample.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/enisz/node-logger.git"
+    "url": "git+https://github.com/enisz/node-ez-logger.git"
   },
   "keywords": [
     "node",
@@ -21,7 +21,7 @@
   "author": "Enisz Abdalla",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/enisz/node-logger/issues"
+    "url": "https://github.com/enisz/node-ez-logger/issues"
   },
-  "homepage": "https://github.com/enisz/node-logger#readme"
+  "homepage": "https://github.com/enisz/node-ez-logger#readme"
 }
