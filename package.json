@@ -1,6 +1,6 @@
 {
-	"name": "node-ez-logger",
-  "version": "1.0.0",
+  "name": "node-ez-logger",
+  "version": "1.0.1",
   "description": "Simple logger module for node.js",
   "main": "index.js",
   "scripts": {
@@ -14,10 +14,10 @@
     "node",
     "node.js",
     "logger"
-	],
-	"dependencies" : {
-		"node-date-parser" : "^1.0.6"
-	},
+  ],
+  "dependencies": {
+    "node-date-parser": "^1.0.6"
+  },
   "author": "Enisz Abdalla",
   "license": "ISC",
   "bugs": {
