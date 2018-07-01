@@ -11,22 +11,20 @@ const interface = {
 
 function process(severity, messages)
 {
-
-	let message = `${dateParser('Y-m-d H:i:s,V')} [${severity.toUpperCase()}] `;
+	let messageParts = [];
 
 	for(let x in messages)
 	{
 		if(typeof messages[x] == 'object')
-			message += JSON.stringify(messages[x], null, 2);
+			messageParts.push(JSON.stringify(messages[x], null, 2));
 		else
-			message += messages[x];
-
-		message += "\n";
+			messageParts.push(messages[x]);
 	}
-		
+
+	let message = `${dateParser('Y-m-d H:i:s,V')} [${severity.toUpperCase()}] ${messageParts.join("\n")}`;
 
 	writeToFile(message);
-	console.log(`\x1b[${getColor(severity)}m%s\x1b[0m`, message);
+	writeToConsole(severity, message);
 }
 
 function getColor(severity)
@@ -51,7 +49,12 @@ function writeToFile(line)
 		fs.mkdirSync('logs');
 
   const stream = fs.createWriteStream(path.join('logs', `${dateParser('Y-m-d_H')}.log`), { flags : 'a' });
-	stream.write(line);
+	stream.write(`${line}\n`);
+}
+
+function writeToConsole(severity, message)
+{
+	console.log(`\x1b[${getColor(severity)}m%s\x1b[0m`, message);
 }
 
 module.exports = interface;
