@@ -2,7 +2,14 @@ const dateParser = require('node-date-parser');
 const fs = require('fs');
 const path = require('path');
 
+let dateFormat = 'Y-m-d H:i:s,V';
+let logPath = 'logs';
+
 const interface = {
+	config : {
+		dateFormat : format => dateFormat = format,
+		logPath : path => logPath = path
+	},
 	debug : (...messages) => process('debug', messages),
 	info : (...messages) => process('info', messages),
 	warning : (...messages) => process('warning', messages),
@@ -21,7 +28,7 @@ function process(severity, messages)
 			messageParts.push(messages[x]);
 	}
 
-	let message = `${dateParser('Y-m-d H:i:s,V')} [${severity.toUpperCase()}] ${messageParts.join("\n")}`;
+	let message = `${dateParser(dateFormat)} [${severity.toUpperCase()}] ${messageParts.join("\n")}`;
 
 	writeToFile(message);
 	writeToConsole(severity, message);
@@ -74,10 +81,10 @@ function getColor(severity)
 
 function writeToFile(line)
 {
-	if (!fs.existsSync('logs'))
-		fs.mkdirSync('logs');
+	if (!fs.existsSync(logPath))
+		fs.mkdirSync(logPath);
 
-  const stream = fs.createWriteStream(path.join('logs', `${dateParser('Y-m-d_H')}.log`), { flags : 'a' });
+  const stream = fs.createWriteStream(path.join(logPath, `${dateParser('Y-m-d_H')}.log`), { flags : 'a' });
 	stream.write(`${line}\n`);
 }
 
