@@ -1,4 +1,4 @@
-const dateParser = require('node-date-parser');
+const date = require('node-date-parser');
 const fs = require('fs');
 const path = require('path');
 
@@ -28,7 +28,7 @@ function process(severity, messages)
 			messageParts.push(messages[x]);
 	}
 
-	let message = `${dateParser(dateFormat)} [${severity.toUpperCase()}] ${messageParts.join("\n")}`;
+	let message = `${date.parse(dateFormat)} [${severity.toUpperCase()}] ${messageParts.join("\n")}`;
 
 	writeToFile(message);
 	writeToConsole(severity, message);
@@ -84,7 +84,7 @@ function writeToFile(line)
 	if (!fs.existsSync(logPath))
 		fs.mkdirSync(logPath);
 
-  const stream = fs.createWriteStream(path.join(logPath, `${dateParser('Y-m-d_H')}.log`), { flags : 'a' });
+  const stream = fs.createWriteStream(path.join(logPath, `${date.parse('Y-m-d_H')}.log`), { flags : 'a' });
 	stream.write(`${line}\n`);
 }
 

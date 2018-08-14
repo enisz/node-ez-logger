@@ -16,7 +16,7 @@
     "logger"
   ],
   "dependencies": {
-    "node-date-parser": "^1.0.6"
+    "node-date-parser": "^1.0.8"
   },
   "author": "Enisz Abdalla",
   "license": "ISC",
